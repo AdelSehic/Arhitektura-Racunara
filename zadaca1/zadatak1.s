@@ -1,6 +1,6 @@
 .section .data
 .globl number
-number: .word 10
+number: .word 11
 .globl result
 result: .byte 0
 
@@ -11,6 +11,10 @@ main:
     lw $t0, 0($t0)
 
     andi $t0, $t0, 1
+    xori $t0, $t0, 1
 
-    la $t1, result
-    sw $t0, 0($t1)
+    la $t2, result
+    sw $t0, 0($t2)
+
+    addiu $v0, $0, 0
+    jr $ra
