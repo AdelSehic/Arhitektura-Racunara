@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Extract the argument for the input file
+arg="$1"
+extenstion=".s"
+
+# Define the target and output file
+target="mips32r2el-linux"
+
+# Compile the input file
+ecc -target "$target" -g -O0 "${1}${extenstion}" -o "$arg"
+
+# Run the compiled binary in QEMU
+qemu-mipsel -g 1234 "$arg" &
+
+# Start the GDB debugger
+gdb-multiarch -q "$arg"
