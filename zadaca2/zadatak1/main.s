@@ -8,35 +8,29 @@ main:
     addiu $sp, $sp, -16
     sw  $ra, 12($sp)
 
-    addiu $t0, $0, 2
+    addiu $s0, $0, 2
     for1:
-        sw $t0, 8($sp)
-        slti $t9, $t0, 6
+        slti $t9, $s0, 6
         beq $t9, $0, exit1
-
-        addiu $t1, $0, 3
+        addiu $s1, $0, 3
         for2:
-            sw $t1, 4($sp)
-            slti $t9, $t1, 7
+            slti $t9, $s1, 7
             beq $t9, $0, exit2
 
-            addu $a0, $t0, $0
-            addu $a1, $t1, $0
+            addu $a0, $s0, $0
+            addu $a1, $s1, $0
             jal foo
 
             la   $a0, format
-            lw $a1, 8($sp)
-            lw $a2, 4($sp)
+            addu $a1, $0, $s0
+            addu $a2, $0, $s1
             addu $a3, $v0, $0
             jal printf
 
-            lw $t0, 8($sp)
-            lw $t1, 4($sp)
-            addiu $t1, $t1, 1
+            addiu $s1, $s1, 1
             j for2
         exit2:
-        lw $t0, 8($sp)
-        addiu $t0, $t0, 1
+        addiu $s0, $s0, 1
         j for1
     exit1:
 
