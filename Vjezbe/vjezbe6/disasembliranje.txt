@@ -1,0 +1,19 @@
+mips format:
+
+j tip:
+  | opcode - 6 | target |
+
+  opcode jednoznacno odredjuje o kojoj se instrukciji radi
+
+i tip:
+  | opcode - 6 | rs - 5 | rt - 5 | immediate - 16 |
+
+r tip:
+  | opcode - 6 | rs - 5 | rt - 5 |    funct - 6   |
+
+dzamp:
+  000010 001001001...1
+
+  | j   | 001001001...1+00 |
+  $pc -> 1001+001001001...1+00 - nova zakodirana adresa za dzamp
+
